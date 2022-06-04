@@ -1,3 +1,9 @@
+.serverless
+.webpack
+
+yarn.lock
+src/config/.env
+
 # Logs
 logs
 *.log
