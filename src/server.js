@@ -1,38 +1,16 @@
-import serverless from "serverless-http";
 import express from "express";
-import dotenv from "dotenv";
+import serverless from "serverless-http";
 
-import cors from "cors";
-import morgan from "morgan";
-import helmet from "helmet";
-import compression from "compression";
+import { expressInitialization, expressRoutes } from "./lib";
 
-/** Initialize Express Server */
-export const server = express();
+const server = express();
 
-/** Environment config */
-dotenv.config({ path: "src/config/.env" });
+(async () => {
+  // Initialize Express Server Functionality
+  await expressInitialization(server);
 
-// CORS
-server.use(cors({ origin: true, credentials: true }));
-// API LOG
-server.use(morgan("dev"));
-// XSS Attack Security
-server.use(helmet());
-// Compress Requests
-server.use(compression());
+  // Initialize Express Routes
+  await expressRoutes(server);
+})();
 
-/** Routes */
-import { userRoute } from "./routes";
-
-server.use("/users", userRoute);
-
-server.use("/", (req, res) => {
-  res.status(200).send({
-    success: true,
-    message: "Node JS Serverless Express API",
-    data: [],
-    totalCount: null,
-  });
-});
 export const handler = serverless(server);
