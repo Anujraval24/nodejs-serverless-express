@@ -2,6 +2,7 @@
 .webpack
 
 yarn.lock
+package-lock.json
 src/config/.env
 
 # Logs
