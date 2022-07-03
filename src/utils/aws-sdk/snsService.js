@@ -12,10 +12,10 @@ const SNSClient = _SNSClient;
 const snsClient = new SNSClient({ region: process.env.AWS_SNS_REGION });
 
 // Sample Object
-const obj = {
-	to: '911234567890',
-	text: 'Hello from AWS SNS',
-};
+// const obj = {
+// 	to: '911234567890',
+// 	text: 'Hello from AWS SNS',
+// };
 
 const sendSms = async (obj) => {
 	let recipients = [];
@@ -36,12 +36,12 @@ const sendSms = async (obj) => {
 };
 
 const sendNotification = async (data) => {
-	let SNS_KEY_ID = process.env.SNS_SECRETACCESSKEY,
-		SNS_ACCESS_KEY = process.env.SNS_ACCESSKEYID;
+	const SNS_KEY_ID = process.env.SNS_SECRETACCESSKEY;
+	const SNS_ACCESS_KEY = process.env.SNS_ACCESSKEYID;
 
 	var ARN = process.env.SNS_ARN;
 
-	let myApp = new SNS({
+	const myApp = new SNS({
 		platform: SNS.SUPPORTED_PLATFORMS.ANDROID,
 		// If using iOS change uncomment the line below
 		// and comment out SUPPORTED_PLATFORMS.ANDROID the one above

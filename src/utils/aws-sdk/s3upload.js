@@ -1,5 +1,6 @@
 //Require Package
 import { S3 } from 'aws-sdk';
+import fs from 'fs';
 
 //S3 Configurationgist
 const s3 = new S3({
